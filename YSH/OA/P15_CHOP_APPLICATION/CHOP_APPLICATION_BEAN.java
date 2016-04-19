@@ -26,7 +26,7 @@ public class CHOP_APPLICATION_BEAN {
 	private String CHOP_USER;
 	private String NOTE;
 	private String DATE;
-	
+	private String FINAL_SIGN_LV;
 	
 	
 	public CHOP_APPLICATION_BEAN(String pNO, String cPNYID, String eMPID,
@@ -36,7 +36,7 @@ public class CHOP_APPLICATION_BEAN {
 			String cHOP2_TODO, String cHOP2_PROCESS_DEPT, String cHOP2_SIGN_LV,
 			String cHOP2_NOTE, String cHOP3_NO, String cHOP3_TODO,
 			String cHOP3_PROCESS_DEPT, String cHOP3_SIGN_LV, String cHOP3_NOTE,
-			String cHOP_USER, String nOTE, String dATE) {
+			String cHOP_USER, String nOTE, String dATE ,String fINAL_SIGN_LV) {
 		super();
 		PNO = pNO;
 		CPNYID = cPNYID;
@@ -62,6 +62,7 @@ public class CHOP_APPLICATION_BEAN {
 		CHOP_USER = cHOP_USER;
 		NOTE = nOTE;
 		DATE = dATE;
+		FINAL_SIGN_LV = fINAL_SIGN_LV;
 	}
 	
 	/**
@@ -352,5 +353,11 @@ public class CHOP_APPLICATION_BEAN {
 	public void setDATE(String dATE) {
 		DATE = dATE;
 	}
+	public String getFINAL_SIGN_LV() {
+		return FINAL_SIGN_LV;
+	}
 	
+	public void setFINAL_SIGN_LV(String fINAL_SIGN_LV) {
+		FINAL_SIGN_LV = fINAL_SIGN_LV;
+	}
 }

@@ -17,7 +17,7 @@ public class CHOP_APPLICATION_DAO {
 				ret[0][6], ret[0][7], ret[0][8], ret[0][9], ret[0][10],
 				ret[0][11], ret[0][12], ret[0][13], ret[0][14], ret[0][15],
 				ret[0][16], ret[0][17], ret[0][18], ret[0][19], ret[0][20],
-				ret[0][21], ret[0][22], ret[0][23]);
+				ret[0][21], ret[0][22], ret[0][23],ret[0][24]);
 		
 		return b;
 

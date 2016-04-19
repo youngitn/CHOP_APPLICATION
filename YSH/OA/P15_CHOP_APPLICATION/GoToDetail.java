@@ -12,7 +12,31 @@ public class GoToDetail extends hproc {
 		talk t = getTalk();
 		CHOP_APPLICATION_DAO dao = new CHOP_APPLICATION_DAO();
 		CHOP_APPLICATION_BEAN bean = dao.getBean(getValue("table1.PNO"), t);
+		String sql,HECNAME,DEP_NAME;
+		
+		if (bean.getEMPID().trim().length() != 0){
+			sql = "select HECNAME,DEP_NAME from USER_INFO_VIEW where EMPID = '"+bean.getEMPID()+"'";
+			String[][] ret = t.queryFromPool(sql);
 
+			HECNAME = ret[0][0];
+			DEP_NAME = ret[0][1];
+			
+			setValue("EMPID_NAME",HECNAME);
+			setValue("DEPT_NO_NAME",DEP_NAME);
+		}
+		if (bean.getCHOP_USER().trim().length() != 0){
+			sql = "select HECNAME,DEP_NAME from USER_INFO_VIEW where EMPID = '"+bean.getCHOP_USER()+"'";
+			String[][] ret = t.queryFromPool(sql);
+			if (ret.length != 0){
+				HECNAME = ret[0][0];
+				
+				
+				setValue("CHOP_USER_NAME",HECNAME);
+			}
+			
+		}
+		setVisible("SEND", false);
+		setVisible("QUERYPAGE", false);
 		setValue("PNO", bean.getPNO());
 		setValue("CPNYID", bean.getCPNYID());
 		setValue("EMPID", bean.getEMPID());
