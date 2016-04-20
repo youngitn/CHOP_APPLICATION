@@ -3,12 +3,16 @@ package YSH.OA.P15_CHOP_APPLICATION;
 import hr.common;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 import jcx.db.talk;
 import jcx.jform.hproc;
 import jcx.util.convert;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -56,8 +60,6 @@ public class AddRun extends hproc {
 			message("請選擇印章編號！");
 		}else if (getValue("CHOP1_SIGN_LV").trim().isEmpty()) {
 			message("請選擇核決權限！");
-		}else if (getValue("CHOP_USER").trim().isEmpty()) {
-			message("請選擇用印人！");
 		}else if (getValue("CHOP1_PROCESS_DEPT").trim().isEmpty()){
 			message("請選擇承辦單位！");
 		}else if (getValue("CHOP1_TODO").trim().isEmpty()){
@@ -68,10 +70,25 @@ public class AddRun extends hproc {
 		}else {
 			
 			String pno = getPNO(getToday("YYYYmmdd"), "CHOP_APPLICATION");
-
+			
 			setValue("PNO", pno);
-
+				
 			talk t = getTalk();
+			int lv1 = 0;
+			int lv2 = 0;
+			int lv3 = 0;
+			if (getValue("CHOP1_SIGN_LV").trim().length() != 0)
+				lv1 = Integer.parseInt(getValue("CHOP1_SIGN_LV"));
+			if (getValue("CHOP2_SIGN_LV").trim().length() != 0)
+				lv2 = Integer.parseInt(getValue("CHOP2_SIGN_LV"));
+			if (getValue("CHOP3_SIGN_LV").trim().length() != 0)
+				lv3 = Integer.parseInt(getValue("CHOP3_SIGN_LV"));
+			
+			int[] a = {lv1,lv2,lv3};
+
+	        List b = Arrays.asList(ArrayUtils.toObject(a));
+
+	       
 			String sql = "Insert into CHOP_APPLICATION (PNO,"
 					+ "EMPID,"
 					+ "CPNYID,"
@@ -95,7 +112,8 @@ public class AddRun extends hproc {
 					+ "CHOP3_NOTE,"
 					+ "CHOP_USER,"
 					+ "NOTE,"
-					+ "DATE"
+					+ "DATE,"
+					+ "FINAL_SIGN_LV"
 					+ ") VALUES ('"
 					+ getValue("PNO")
 					+ "','"
@@ -143,7 +161,9 @@ public class AddRun extends hproc {
 					+ "','"
 					+ getValue("NOTE")
 					+ "','"
-					+ getValue("DATE")					
+					+ getValue("DATE")
+					+ "','"
+					+ Integer.toString((Integer) Collections.max(b))
 					+ "')";
 			String now = getNow();
 			String MUSER = getUser();

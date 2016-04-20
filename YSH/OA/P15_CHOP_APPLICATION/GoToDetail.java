@@ -28,9 +28,7 @@ public class GoToDetail extends hproc {
 			sql = "select HECNAME,DEP_NAME from USER_INFO_VIEW where EMPID = '"+bean.getCHOP_USER()+"'";
 			String[][] ret = t.queryFromPool(sql);
 			if (ret.length != 0){
-				HECNAME = ret[0][0];
-				
-				
+				HECNAME = ret[0][0];				
 				setValue("CHOP_USER_NAME",HECNAME);
 			}
 			
