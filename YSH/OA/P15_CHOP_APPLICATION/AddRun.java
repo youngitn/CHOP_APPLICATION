@@ -229,7 +229,7 @@ public class AddRun extends hproc {
 	}
 
 	public void sendMail(talk t, String empid) throws Throwable {
-
+		
 		String sqlc = "SELECT HRADDR FROM HRSYS";
 		String[][] HRADDR = t.queryFromPool(sqlc);
 

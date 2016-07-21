@@ -40,7 +40,7 @@ public class SignInit extends hproc{
 		if (POSITION == 5){
 			setVisible("SEND", false);
 			setVisible("QUERYPAGE", false);
-			
+		
 		}
 		return arg0;
 	}
